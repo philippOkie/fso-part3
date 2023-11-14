@@ -15,7 +15,7 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :type")
 );
 
-const persons = [
+let persons = [
   {
     id: 1,
     name: "Arto Hellas",
