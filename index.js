@@ -3,6 +3,18 @@ const app = express();
 let morgan = require("morgan");
 const cors = require("cors");
 
+morgan.token("type", function (req, res) {
+  let stringPersons = JSON.stringify(persons);
+  console.log("RECEIVED INFO: ", stringPersons, " |||||");
+});
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static("dist"));
+app.use(
+  morgan(":method :url :status :res[content-length] - :response-time ms :type")
+);
+
 const persons = [
   {
     id: 1,
@@ -32,18 +44,6 @@ const persons = [
 ];
 let amountOfPeople = persons.length + 1;
 let now = new Date();
-
-morgan.token("type", function (req, res) {
-  let stringPersons = JSON.stringify(persons);
-  console.log("RECEIVED INFO: ", stringPersons, " |||||");
-});
-
-app.use(cors());
-app.use(express.json());
-app.use(express.static("dist"));
-app.use(
-  morgan(":method :url :status :res[content-length] - :response-time ms :type")
-);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
