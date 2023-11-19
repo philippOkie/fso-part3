@@ -87,9 +87,14 @@ app.get("/info", (req, res) => {
 });
 
 app.delete("/api/persons/:id", (req, res, next) => {
+  console.log(req.params.id);
   Person.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.status(204).end();
+      if (result) {
+        res.json({ message: "Person deleted successfully" });
+      } else {
+        res.status(404).json({ error: "Person not found" });
+      }
     })
     .catch((err) => next(err));
 });
