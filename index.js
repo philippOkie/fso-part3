@@ -35,14 +35,10 @@ app.put("/api/persons/:id", (req, res, next) => {
     .then((updatedPerson) => {
       res.json(updatedPerson);
     })
-<<<<<<< HEAD
     .catch((err) => {
       console.error(err);
       next(err);
     });
-=======
-    .catch((err) => next(err));
->>>>>>> 66ba620f27f6a61883bc4549ec8b9cd184104eb2
 });
 
 app.get("/api/persons/:id", (req, res, next) => {
