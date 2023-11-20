@@ -9,8 +9,6 @@ const { get } = require("mongoose");
 app.use(cors());
 app.use(express.json());
 app.use(express.static("dist"));
-app.use("/assets", express.static(path.join("dist", "assets")));
-
 app.use(morgan("combined"));
 
 let persons = [];
